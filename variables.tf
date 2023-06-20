@@ -63,16 +63,16 @@ variable "psk" {
 # variables to configure algos for customers who have specific requirements
 variable "dhgroup" {
   description = "DH group for phase 1 & 2"
-  type        = string
-  default     = "MODP3072"
+  type        = list(string)
+  default     = ["MODP3072"]
 }
 variable "encryption" {
   description = "Encryption algorithm for phase 1 & 2"
-  type        = string
-  default     = "AES256CBC"
+  type        = list(string)
+  default     = ["AES256CBC"]
 }
 variable "integrity" {
   description = "Integrity algorithm for phase 1 & 2"
-  type        = string
-  default     = "SHA256"
+  type        = list(string)
+  default     = ["SHA256"]
 }
