@@ -5,6 +5,10 @@ data "alkira_group_connector" "group" {
 data "alkira_segment" "segment" {
   name = var.alk_segment
 }
+#create billing tag
+resource "alkira_billing_tag" "customer_tag" {
+  name           = var.connectorname
+}
 #create ipsec connector (routed - bgp)
 resource "alkira_connector_ipsec" "ipsec" {
   name           = var.connectorname
@@ -26,7 +30,7 @@ resource "alkira_connector_ipsec" "ipsec" {
     name                     = var.endpointname
     customer_gateway_ip      = var.gateway
     preshared_keys           = [var.psk, var.psk]
-#   billing_tag_ids          = [alkira_billing_tag.tag1.id]
+    billing_tag_ids          = [alkira_billing_tag.customer_tag.id]
     enable_tunnel_redundancy = true
 
     # Optional advanced options could be specified per endpoint.
