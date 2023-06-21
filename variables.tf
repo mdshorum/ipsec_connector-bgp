@@ -14,12 +14,12 @@ variable "alk_password" {
   sensitive   = true
 }
 # To be used for name of IPSec connector but maybe combine with site name below for cloud connectors
-variable "connectorname" {
+variable "customername" {
   description = "Customer name"
   type        = string
 }
-# Adding endpoint name to use for IPSec connectors
-variable "endpointname" {
+# Adding site name to be used as endpoint name for IPSec connectors
+variable "sitename" {
   description = "Site name"
   type        = string
 }

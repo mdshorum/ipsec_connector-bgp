@@ -7,11 +7,11 @@ data "alkira_segment" "segment" {
 }
 #create billing tag
 resource "alkira_billing_tag" "customer_tag" {
-  name           = var.connectorname
+  name           = "${var.customername}-billing-tag"
 }
 #create ipsec connector (routed - bgp)
 resource "alkira_connector_ipsec" "ipsec" {
-  name           = var.connectorname
+  name           = "${var.customername}-ipsec-cn"
   cxp            = var.cxp
   group          = data.alkira_group_connector.group.name
   segment_id     = data.alkira_segment.segment.id
@@ -27,7 +27,7 @@ resource "alkira_connector_ipsec" "ipsec" {
 
   # There could be multiple endpoints defined.
   endpoint {
-    name                     = var.endpointname
+    name                     = var.sitename
     customer_gateway_ip      = var.gateway
     preshared_keys           = [var.psk, var.psk]
     billing_tag_ids          = [alkira_billing_tag.customer_tag.id]
